@@ -11,7 +11,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image
-
+import torchvision.models as models
+from torchvision.models import ResNet50_Weights
 # Define severity levels and corresponding colors
 severity_levels = ["Normal", "Doubtful", "Mild", "Moderate", "Severe"]
 severity_solutions = {
@@ -40,7 +41,7 @@ transform = transforms.Compose([
 class ACHLModel(nn.Module):
     def __init__(self, num_classes=5):
         super(ACHLModel, self).__init__()
-        self.base_model = models.resnet50(pretrained=True)
+        self.base_model = models.resnet50(weights=ResNet50_Weights.IMAGENET1K_V1)
         self.base_model.fc = nn.Identity()  # Keep backbone intact
         self.fc_contrastive = nn.Linear(2048, 128)
         self.fc_class = nn.Linear(128, num_classes)
