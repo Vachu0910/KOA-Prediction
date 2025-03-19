@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOA Severity Prediction</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Knee Osteoarthritis Severity Prediction</h1>
+        <p>Upload an X-ray image to get an AI-based diagnosis and treatment suggestions.</p>
+        
+        <input type="file" id="upload" accept="image/*" onchange="previewImage()">
+        <button onclick="predictSeverity()">Predict</button>
+
+        <div class="output">
+            <p id="result"></p>
+            <p id="solution"></p>
+
+            <div class="legend">
+                <h3>Severity Level Colors</h3>
+                <ul>
+                    <li><span style="background-color: green;"></span> Normal</li>
+                    <li><span style="background-color: cyan;"></span> Doubtful</li>
+                    <li><span style="background-color: yellow;"></span> Mild</li>
+                    <li><span style="background-color: orange;"></span> Moderate</li>
+                    <li><span style="background-color: red;"></span> Severe</li>
+                </ul>
+            </div>
+
+            <div class="image-container">
+                <div class="image-box">
+                    <h3>Original X-ray</h3>
+                    <img id="preview" alt="Uploaded X-ray" style="display:none;"/>
+                </div>
+                <div class="image-box">
+                    <h3>Severity-Based Image</h3>
+                    <img id="severityImage" alt="Severity-Based Image" style="display:none;"/>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
